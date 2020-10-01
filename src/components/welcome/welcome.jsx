@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Welcome = (props) => {
@@ -21,6 +22,11 @@ const Welcome = (props) => {
       <p className="welcome__text">Удачи!</p>
     </section>
   );
+};
+
+
+Welcome.propTypes = {
+  mistakesCount: PropTypes.number.isRequired,
 };
 
 

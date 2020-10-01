@@ -1,5 +1,6 @@
 import React from 'react';
 import Welcome from '../welcome/welcome.jsx';
+import PropTypes from 'prop-types';
 
 
 const App = (props) => {
@@ -10,6 +11,11 @@ const App = (props) => {
       mistakesCount={mistakesCount}
     />
   );
+};
+
+
+App.propTypes = {
+  mistakesCount: PropTypes.number.isRequired,
 };
 
 
