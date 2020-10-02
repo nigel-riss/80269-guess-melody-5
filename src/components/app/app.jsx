@@ -10,6 +10,7 @@ import Login from '../login/login.jsx';
 import Result from '../result/result.jsx';
 import Lose from '../lose/lose.jsx';
 import Artist from '../artist/artist.jsx';
+import Genre from '../genre/genre.jsx';
 
 
 const App = (props) => {
@@ -33,7 +34,9 @@ const App = (props) => {
         <Route path="/dev-artist" exact>
           <Artist/>
         </Route>
-        <Route path="/dev-genre" exact></Route>
+        <Route path="/dev-genre" exact>
+          <Genre/>
+        </Route>
       </Switch>
     </Router>
   );
