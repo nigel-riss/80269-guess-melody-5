@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Welcome from '../welcome/welcome.jsx';
 import Login from '../login/login.jsx';
+import Result from '../result/result.jsx';
 
 
 const App = (props) => {
@@ -20,6 +21,9 @@ const App = (props) => {
         </Route>
         <Route path="/login" exact>
           <Login/>
+        </Route>
+        <Route path="/result" exact>
+          <Result/>
         </Route>
       </Switch>
     </Router>
