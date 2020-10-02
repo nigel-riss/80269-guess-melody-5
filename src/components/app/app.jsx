@@ -1,15 +1,28 @@
 import React from 'react';
-import Welcome from '../welcome/welcome.jsx';
 import PropTypes from 'prop-types';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import Welcome from '../welcome/welcome.jsx';
+import Login from '../login/login.jsx';
 
 
 const App = (props) => {
   const {mistakesCount} = props;
 
   return (
-    <Welcome
-      mistakesCount={mistakesCount}
-    />
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <Welcome mistakesCount={mistakesCount}/>
+        </Route>
+        <Route path="/login" exact>
+          <Login/>
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
