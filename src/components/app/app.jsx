@@ -11,6 +11,7 @@ import Result from '../result/result.jsx';
 import Lose from '../lose/lose.jsx';
 import ArtistQuestion from '../artist-question/artist-question.jsx';
 import GenreQuestion from '../genre-question/genre-question.jsx';
+import GameScreen from '../game-screen/game-screen.jsx';
 
 
 const App = (props) => {
@@ -18,12 +19,23 @@ const App = (props) => {
     mistakesCount,
     questions,
   } = props;
+  const [
+    firstQuestion,
+    secondQuestion,
+  ] = questions;
 
   return (
     <Router>
       <Switch>
-        <Route path="/" exact>
-          <Welcome mistakesCount={mistakesCount}/>
+        <Route exact
+          path="/"
+          render={({history}) => (
+            <Welcome
+              mistakesCount={mistakesCount}
+              onPlayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        >
         </Route>
         <Route path="/login" exact>
           <Login/>
@@ -37,13 +49,18 @@ const App = (props) => {
         <Route path="/dev-artist" exact>
           <ArtistQuestion
             onAnswer={() => {}}
-            question={questions[1]}
+            question={secondQuestion}
           />
         </Route>
         <Route path="/dev-genre" exact>
           <GenreQuestion
             onAnswer={() => {}}
-            question={questions[0]}
+            question={firstQuestion}
+          />
+        </Route>
+        <Route path="/game">
+          <GameScreen
+            questions={questions}
           />
         </Route>
       </Switch>
