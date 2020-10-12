@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import genreQuestionTypes from '../../types/genre-question.js';
 
 class GenreQuestion extends PureComponent {
@@ -52,7 +53,13 @@ class GenreQuestion extends PureComponent {
 
         <section className="game__screen">
           <h2 className="game__title">Выберите {genre} треки</h2>
-          <form className="game__tracks">
+          <form
+            className="game__tracks"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onAnswer(question, this.state.answers);
+            }}
+          >
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="track">
                 <button className="track__button track__button--play" type="button"/>
@@ -97,7 +104,10 @@ class GenreQuestion extends PureComponent {
 }
 
 
-GenreQuestion.propTypes = genreQuestionTypes;
+GenreQuestion.propTypes = {
+  onAnswer: PropTypes.func.isRequired,
+  question: genreQuestionTypes,
+};
 
 
 export default GenreQuestion;

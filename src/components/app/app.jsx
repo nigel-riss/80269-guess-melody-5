@@ -9,7 +9,7 @@ import Welcome from '../welcome/welcome.jsx';
 import Login from '../login/login.jsx';
 import Result from '../result/result.jsx';
 import Lose from '../lose/lose.jsx';
-import Artist from '../artist/artist.jsx';
+import ArtistQuestion from '../artist-question/artist-question.jsx';
 import GenreQuestion from '../genre-question/genre-question.jsx';
 
 
@@ -35,7 +35,10 @@ const App = (props) => {
           <Lose/>
         </Route>
         <Route path="/dev-artist" exact>
-          <Artist/>
+          <ArtistQuestion
+            onAnswer={() => {}}
+            question={questions[1]}
+          />
         </Route>
         <Route path="/dev-genre" exact>
           <GenreQuestion
@@ -51,6 +54,7 @@ const App = (props) => {
 
 App.propTypes = {
   mistakesCount: PropTypes.number.isRequired,
+  questions: PropTypes.array,
 };
 
 
