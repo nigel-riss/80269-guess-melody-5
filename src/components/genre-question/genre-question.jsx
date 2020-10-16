@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import genreQuestionTypes from '../../types/genre-question.js';
+import genreQuestionType from '../../types/genre-question.js';
 
 class GenreQuestion extends PureComponent {
   constructor(props) {
@@ -106,7 +106,7 @@ class GenreQuestion extends PureComponent {
 
 GenreQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: genreQuestionTypes,
+  question: genreQuestionType,
 };
 
 

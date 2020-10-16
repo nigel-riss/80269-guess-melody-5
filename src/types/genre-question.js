@@ -2,17 +2,14 @@ import PropTypes from 'prop-types';
 import {GameType} from '../const.js';
 
 
-export default {
-  onAnswer: PropTypes.func.isRequired,
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-    })).isRequired,
+export default PropTypes.shape({
+  answers: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([
-      GameType.ARTIST,
-      GameType.GENRE,
-    ]).isRequired,
-  }),
-};
+  })).isRequired,
+  genre: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    GameType.ARTIST,
+    GameType.GENRE,
+  ]).isRequired,
+});

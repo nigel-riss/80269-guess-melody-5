@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import artistQuestionTypes from '../../types/artist-question.js';
+import artistQuestionType from '../../types/artist-question.js';
 
 
 const ArtistQuestion = (props) => {
@@ -90,7 +90,7 @@ const ArtistQuestion = (props) => {
 
 ArtistQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: artistQuestionTypes,
+  question: artistQuestionType,
 };
 
 

@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom';
 import {GameType} from '../../const.js';
 import ArtistQuestion from '../artist-question/artist-question.jsx';
 import GenreQuestion from '../genre-question/genre-question.jsx';
+import artistQuestionType from '../../types/artist-question.js';
+import genreQuestionType from '../../types/genre-question.js';
 
 
 class GameScreen extends PureComponent {
@@ -58,7 +60,12 @@ class GameScreen extends PureComponent {
 
 
 GameScreen.propTypes = {
-  questions: PropTypes.array.isRequired,
+  questions: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        artistQuestionType,
+        genreQuestionType,
+      ])
+  ).isRequired,
 };
 
 
