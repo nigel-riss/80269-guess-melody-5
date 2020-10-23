@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import genreQuestionTypes from '../../types/genre-question.js';
+import genreQuestionType from '../../types/genre-question.js';
 
 class GenreQuestion extends PureComponent {
   constructor(props) {
@@ -15,6 +15,7 @@ class GenreQuestion extends PureComponent {
     const {
       onAnswer,
       question,
+      renderPlayer,
     } = this.props;
     const {answers: userAnswers} = this.state;
     const {
@@ -62,12 +63,7 @@ class GenreQuestion extends PureComponent {
           >
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="track">
-                <button className="track__button track__button--play" type="button"/>
-                <div className="track__status">
-                  <audio
-                    src={answer.src}
-                  />
-                </div>
+                {renderPlayer(answer.src, i)}
                 <div className="game__answer">
                   <input
                     className="game__input visually-hidden"
@@ -106,7 +102,8 @@ class GenreQuestion extends PureComponent {
 
 GenreQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: genreQuestionTypes,
+  question: genreQuestionType,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import artistQuestionTypes from '../../types/artist-question.js';
+import artistQuestionType from '../../types/artist-question.js';
 
 
 const ArtistQuestion = (props) => {
   const {
     onAnswer,
     question,
+    renderPlayer,
   } = props;
   const {
     answers,
@@ -46,12 +47,7 @@ const ArtistQuestion = (props) => {
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <button className="track__button track__button--play" type="button"></button>
-            <div className="track__status">
-              <audio
-                src={song.src}
-              />
-            </div>
+            {renderPlayer(song.src, 0)}
           </div>
         </div>
 
@@ -90,7 +86,8 @@ const ArtistQuestion = (props) => {
 
 ArtistQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: artistQuestionTypes,
+  question: artistQuestionType,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 
