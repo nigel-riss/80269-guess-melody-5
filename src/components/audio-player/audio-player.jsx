@@ -54,7 +54,7 @@ class AudioPlayer extends PureComponent {
     } = this.state;
 
     return (
-      <React.Fragment>
+      <div className="track">
         <button
           className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
@@ -67,10 +67,10 @@ class AudioPlayer extends PureComponent {
         />
         <div className="track__status">
           <audio
-            reg={this._audioRef}
+            ref={this._audioRef}
           />
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 
