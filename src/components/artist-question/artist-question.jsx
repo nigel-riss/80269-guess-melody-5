@@ -46,10 +46,12 @@ const ArtistQuestion = (props) => {
       <section className="game__screen">
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
-          <AudioPlayer
-            isPlaying={true}
-            src={song.src}
-          />
+          <div className="track">
+            <AudioPlayer
+              isPlaying={true}
+              src={song.src}
+            />
+          </div>
         </div>
 
         <form
