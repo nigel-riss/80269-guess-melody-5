@@ -20,10 +20,12 @@ const GameScreen = (props) => {
     questions,
     step,
     onUserAnswer,
+    resetGame,
   } = props;
   const question = questions[step];
 
   if (step >= questions.length || !question) {
+    resetGame();
     return (
       <Redirect to="/" />
     );
@@ -60,6 +62,7 @@ GameScreen.propTypes = {
   ).isRequired,
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
 };
 
 
@@ -71,6 +74,10 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer() {
     dispatch(ActionCreator.incrementStep());
   },
+
+  resetGame() {
+    dispatch(ActionCreator.resetGame());
+  }
 });
 
 
