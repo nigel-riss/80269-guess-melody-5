@@ -4,4 +4,15 @@ const ActionType = {
 };
 
 
-export {ActionType};
+const ActionCreator = {
+  incrementStep: () => ({
+    type: ActionType.INCREMENT_STEP,
+    payload: 1,
+  }),
+};
+
+
+export {
+  ActionType,
+  ActionCreator,
+};

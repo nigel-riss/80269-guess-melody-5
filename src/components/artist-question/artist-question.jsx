@@ -53,10 +53,6 @@ const ArtistQuestion = (props) => {
 
         <form
           className="game__artist"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onAnswer(question);
-          }}
         >
           {answers.map((answer, i) => (
             <div className="artist" key={answer.artist}>
@@ -66,6 +62,10 @@ const ArtistQuestion = (props) => {
                 name="answer"
                 value={`artist-${i}`}
                 id={`answer-${i}`}
+                onChange={(e) => {
+                  e.preventDefault();
+                  onAnswer(question);
+                }}
               />
               <label className="artist__name" htmlFor={`answer-${i}`}>
                 <img
