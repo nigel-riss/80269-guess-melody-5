@@ -11,7 +11,7 @@ const Mistakes = (props) => {
     <div className="game__mistakes">
       {mistakes.map((it, i) => <div key={`mistake-${i}`} className="wrong" />)}
     </div>
-  )
+  );
 };
 
 
