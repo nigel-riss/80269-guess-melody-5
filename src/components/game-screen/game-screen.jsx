@@ -6,6 +6,7 @@ import {ActionCreator} from '../../store/action.js';
 import {GameType} from '../../const.js';
 import ArtistQuestion from '../artist-question/artist-question.jsx';
 import GenreQuestion from '../genre-question/genre-question.jsx';
+import Mistakes from '../mistakes/mistakes.jsx';
 import artistQuestionType from '../../types/artist-question.js';
 import genreQuestionType from '../../types/genre-question.js';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx';
@@ -21,6 +22,7 @@ const GameScreen = (props) => {
     step,
     onUserAnswer,
     resetGame,
+    mistakes,
   } = props;
   const question = questions[step];
 
@@ -37,7 +39,9 @@ const GameScreen = (props) => {
         <ArtistQuestionWrapped
           question={question}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes} />
+        </ArtistQuestionWrapped>
       );
 
     case GameType.GENRE:
@@ -45,7 +49,9 @@ const GameScreen = (props) => {
         <GenreQuestionWrapped
           question={question}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes} />
+        </GenreQuestionWrapped>
       );
   }
 
@@ -68,6 +74,7 @@ GameScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

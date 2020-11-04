@@ -3,7 +3,7 @@ import {extend} from '../utils.js';
 
 
 const initialState = {
-  mistakes: 0,
+  mistakes: 1,
   step: 0,
 };
 

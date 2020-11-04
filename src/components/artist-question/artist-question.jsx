@@ -8,6 +8,7 @@ const ArtistQuestion = (props) => {
     onAnswer,
     question,
     renderPlayer,
+    children,
   } = props;
   const {
     answers,
@@ -36,11 +37,7 @@ const ArtistQuestion = (props) => {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        {children}
       </header>
 
       <section className="game__screen">
@@ -88,6 +85,7 @@ ArtistQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: artistQuestionType,
   renderPlayer: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 
