@@ -55,7 +55,7 @@ class GenreQuestion extends PureComponent {
             className="game__tracks"
             onSubmit={(e) => {
               e.preventDefault();
-              onAnswer(question, this.state.answers);
+              onAnswer(question, userAnswers);
             }}
           >
             {answers.map((answer, i) => (
@@ -73,7 +73,7 @@ class GenreQuestion extends PureComponent {
                       const value = e.target.checked;
 
                       this.setState({
-                        answer: [
+                        answers: [
                           ...userAnswers.slice(0, i),
                           value,
                           ...userAnswers.slice(i + 1),

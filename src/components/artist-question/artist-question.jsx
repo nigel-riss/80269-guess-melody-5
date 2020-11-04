@@ -61,7 +61,7 @@ const ArtistQuestion = (props) => {
                 id={`answer-${i}`}
                 onChange={(e) => {
                   e.preventDefault();
-                  onAnswer(question);
+                  onAnswer(question, answer);
                 }}
               />
               <label className="artist__name" htmlFor={`answer-${i}`}>
