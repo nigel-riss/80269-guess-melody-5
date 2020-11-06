@@ -16,6 +16,7 @@ class GenreQuestion extends PureComponent {
       onAnswer,
       question,
       renderPlayer,
+      children,
     } = this.props;
     const {answers: userAnswers} = this.state;
     const {
@@ -45,11 +46,7 @@ class GenreQuestion extends PureComponent {
             />
           </svg>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          {children}
         </header>
 
         <section className="game__screen">
@@ -58,7 +55,7 @@ class GenreQuestion extends PureComponent {
             className="game__tracks"
             onSubmit={(e) => {
               e.preventDefault();
-              onAnswer(question, this.state.answers);
+              onAnswer(question, userAnswers);
             }}
           >
             {answers.map((answer, i) => (
@@ -76,7 +73,7 @@ class GenreQuestion extends PureComponent {
                       const value = e.target.checked;
 
                       this.setState({
-                        answer: [
+                        answers: [
                           ...userAnswers.slice(0, i),
                           value,
                           ...userAnswers.slice(i + 1),
@@ -104,6 +101,7 @@ GenreQuestion.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: genreQuestionType,
   renderPlayer: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 
