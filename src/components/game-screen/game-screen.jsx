@@ -9,11 +9,11 @@ import GenreQuestion from '../genre-question/genre-question.jsx';
 import Mistakes from '../mistakes/mistakes.jsx';
 import artistQuestionType from '../../types/artist-question.js';
 import genreQuestionType from '../../types/genre-question.js';
-import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
 
 
-const GenreQuestionWrapped = withAudioPlayer(GenreQuestion);
-const ArtistQuestionWrapped = withAudioPlayer(ArtistQuestion);
+const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
+const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
 
 
 const GameScreen = (props) => {
