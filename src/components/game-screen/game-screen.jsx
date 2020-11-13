@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action.js';
-import {GameType} from '../../const.js';
+import {
+  GameType,
+  MAX_MISTAKES_COUNT,
+} from '../../const.js';
 import ArtistQuestion from '../artist-question/artist-question.jsx';
 import GenreQuestion from '../genre-question/genre-question.jsx';
 import Mistakes from '../mistakes/mistakes.jsx';
 import artistQuestionType from '../../types/artist-question.js';
 import genreQuestionType from '../../types/genre-question.js';
-import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
+import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.jsx';
 
 
-const GenreQuestionWrapped = withAudioPlayer(GenreQuestion);
-const ArtistQuestionWrapped = withAudioPlayer(ArtistQuestion);
+const GenreQuestionWrapped = withActivePlayer(withUserAnswer(GenreQuestion));
+const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
 
 
 const GameScreen = (props) => {
@@ -21,15 +25,19 @@ const GameScreen = (props) => {
     questions,
     step,
     onUserAnswer,
-    resetGame,
     mistakes,
   } = props;
   const question = questions[step];
 
-  if (step >= questions.length || !question) {
-    resetGame();
+  if (mistakes >= MAX_MISTAKES_COUNT) {
     return (
-      <Redirect to="/" />
+      <Redirect to="/lose" />
+    );
+  }
+
+  if (step >= questions.length || !question) {
+    return (
+      <Redirect to="/result" />
     );
   }
 
@@ -68,7 +76,6 @@ GameScreen.propTypes = {
   ).isRequired,
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
   mistakes: PropTypes.number.isRequired,
 };
 

@@ -29,12 +29,22 @@ const App = () => {
         <Route path="/login" exact>
           <Login/>
         </Route>
-        <Route path="/result" exact>
-          <Result/>
-        </Route>
-        <Route path="/lose" exact>
-          <Lose/>
-        </Route>
+        <Route exact
+          path="/result"
+          render={({history}) => (
+            <Result
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
+        <Route exact
+          path="/lose"
+          render={({history}) => (
+            <Lose
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
         <Route path="/game">
           <GameScreen/>
         </Route>
