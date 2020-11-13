@@ -10,9 +10,10 @@ import Mistakes from '../mistakes/mistakes.jsx';
 import artistQuestionType from '../../types/artist-question.js';
 import genreQuestionType from '../../types/genre-question.js';
 import withActivePlayer from '../../hocs/with-active-player/with-active-player.jsx';
+import withUserAnswer from '../../hocs/with-user-answer/with-user-answer.jsx';
 
 
-const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
+const GenreQuestionWrapped = withActivePlayer(withUserAnswer(GenreQuestion));
 const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
 
 
