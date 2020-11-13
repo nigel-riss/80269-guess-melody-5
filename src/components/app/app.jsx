@@ -29,9 +29,14 @@ const App = () => {
         <Route path="/login" exact>
           <Login/>
         </Route>
-        <Route path="/result" exact>
-          <Result/>
-        </Route>
+        <Route exact
+          path="/result"
+          render={({history}) => (
+            <Result
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
         <Route exact
           path="/lose"
           render={({history}) => (
