@@ -1,10 +1,9 @@
 import {ActionType} from '../../action.js';
 import {extend} from '../../../utils.js';
-import questions from '../../../mocks/questions.js';
 
 
 const initialState = {
-  questions,
+  questions: [],
 };
 
 
