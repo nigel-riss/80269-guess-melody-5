@@ -5,6 +5,7 @@ import {
   createStore,
 } from 'redux';
 import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {createAPI} from './services/api.js';
 import App from './components/app/app.jsx';
@@ -18,7 +19,9 @@ const api = createAPI(() => {});
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 
