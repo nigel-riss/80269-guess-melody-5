@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action.js';
+import {resetGame} from '../../store/action.js';
 
 
 const Result = (props) => {
@@ -9,7 +9,7 @@ const Result = (props) => {
     mistakesCount,
     questionsCount,
     onReplayButtonClick,
-    resetGame,
+    resetGameAction,
   } = props;
 
   const correctAnswersCount = questionsCount - mistakesCount;
@@ -25,7 +25,7 @@ const Result = (props) => {
         className="replay"
         type="button"
         onClick={() => {
-          resetGame();
+          resetGameAction();
           onReplayButtonClick();
         }}
       >
@@ -40,18 +40,18 @@ Result.propTypes = {
   mistakesCount: PropTypes.number.isRequired,
   questionsCount: PropTypes.number.isRequired,
   onReplayButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
+  resetGameAction: PropTypes.func.isRequired,
 };
 
 
-const mapStateToProps = (state) => ({
-  questionsCount: state.step,
-  mistakesCount: state.mistakes,
+const mapStateToProps = ({GAME}) => ({
+  questionsCount: GAME.step,
+  mistakesCount: GAME.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   }
 });
 

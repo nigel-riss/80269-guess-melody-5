@@ -1,14 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {
+  applyMiddleware,
+  createStore,
+} from 'redux';
 import {Provider} from 'react-redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import {createAPI} from './services/api.js';
 import App from './components/app/app.jsx';
-import {reducer} from './store/reducer.js';
+import rootReducer from './store/reducers/root-reducer.js';
+import {
+  fetchQuestions,
+} from './store/api-actions.js';
+
+
+const api = createAPI(() => {});
 
 const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
+
+
+store.dispatch(fetchQuestions());
 
 
 ReactDOM.render(
