@@ -12,38 +12,38 @@ const ActionType = {
 };
 
 
-const ActionCreator = {
-  incrementStep: () => ({
-    type: ActionType.INCREMENT_STEP,
-    payload: 1,
-  }),
+const incrementStep = () => ({
+  type: ActionType.INCREMENT_STEP,
+  payload: 1,
+});
 
-  resetGame: () => ({
-    type: ActionType.RESET_GAME,
-  }),
+const resetGame = () => ({
+  type: ActionType.RESET_GAME,
+});
 
-  incrementMistake: (question, userAnswer) => {
-    let isAnswerCorrect = false;
+const incrementMistakes = (question, userAnswer) => {
+  let isAnswerCorrect = false;
 
-    switch (question.type) {
-      case GameType.ARTIST:
-        isAnswerCorrect = isArtistAnswerCorrect(question, userAnswer);
-        break;
+  switch (question.type) {
+    case GameType.ARTIST:
+      isAnswerCorrect = isArtistAnswerCorrect(question, userAnswer);
+      break;
 
-      case GameType.GENRE:
-        isAnswerCorrect = isGenreAnswerCorrect(question, userAnswer);
-        break;
-    }
+    case GameType.GENRE:
+      isAnswerCorrect = isGenreAnswerCorrect(question, userAnswer);
+      break;
+  }
 
-    return {
-      type: ActionType.INCREMENT_MISTAKES,
-      payload: isAnswerCorrect ? 0 : 1,
-    };
-  },
+  return {
+    type: ActionType.INCREMENT_MISTAKES,
+    payload: isAnswerCorrect ? 0 : 1,
+  };
 };
 
 
 export {
   ActionType,
-  ActionCreator,
+  incrementMistakes,
+  incrementStep,
+  resetGame,
 };

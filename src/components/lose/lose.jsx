@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action.js';
+import {resetGame} from '../../store/action.js';
 
 
 const Lose = (props) => {
   const {
     onReplayButtonClick,
-    resetGame,
+    resetGameAction,
   } = props;
 
   return (
@@ -21,7 +21,7 @@ const Lose = (props) => {
         className="replay"
         type="button"
         onClick={() => {
-          resetGame();
+          resetGameAction();
           onReplayButtonClick();
         }}
       >
@@ -34,13 +34,13 @@ const Lose = (props) => {
 
 Lose.propTypes = {
   onReplayButtonClick: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
+  resetGameAction: PropTypes.func.isRequired,
 };
 
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
 });
 
