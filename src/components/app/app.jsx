@@ -9,6 +9,7 @@ import Login from '../login/login.jsx';
 import Result from '../result/result.jsx';
 import Lose from '../lose/lose.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
 import {MAX_MISTAKES_COUNT} from '../../const.js';
 
 
@@ -26,10 +27,16 @@ const App = () => {
           )}
         >
         </Route>
-        <Route path="/login" exact>
-          <Login/>
-        </Route>
         <Route exact
+          path="/login"
+          render={({history}) => (
+            <Login
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
+        <PrivateRoute
+          exact
           path="/result"
           render={({history}) => (
             <Result

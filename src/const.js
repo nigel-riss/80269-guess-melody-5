@@ -8,7 +8,7 @@ const GameType = {
   GENRE: `genre`,
 };
 
-const MAX_MISTAKES_COUNT = 2;
+const MAX_MISTAKES_COUNT = 30;
 
 
 export {
