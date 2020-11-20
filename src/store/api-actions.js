@@ -1,5 +1,6 @@
 import {
   loadQuestions,
+  redirectToRoute,
   requireAuthorization,
 } from './action.js';
 import {AuthorizationStatus} from '../const.js';
@@ -19,6 +20,7 @@ const fetchQuestions = () => (dispatch, _getState, api) =>
 const login = ({login: email, password}) => (dispatch, _getState, api) =>
   api.post(`/login`, {email, password})
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(`/result`)))
     .catch(() => {});
 
 

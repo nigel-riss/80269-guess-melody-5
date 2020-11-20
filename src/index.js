@@ -16,6 +16,7 @@ import {
   checkAuth,
 } from './store/api-actions.js';
 import {AuthorizationStatus} from './const.js';
+import {redirect} from './store/middlewares/redirect.js';
 
 
 const api = createAPI(() => store
@@ -25,7 +26,8 @@ const api = createAPI(() => store
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
