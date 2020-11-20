@@ -11,7 +11,10 @@ import Lose from '../lose/lose.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
 import browserHistory from '../../browser-history.js';
-import {MAX_MISTAKES_COUNT} from '../../const.js';
+import {
+  AppRoute,
+  MAX_MISTAKES_COUNT,
+} from '../../const.js';
 
 
 const App = () => {
@@ -19,41 +22,41 @@ const App = () => {
     <Router history={browserHistory}>
       <Switch>
         <Route exact
-          path="/"
+          path={AppRoute.ROOT}
           render={({history}) => (
             <Welcome
               mistakesCount={MAX_MISTAKES_COUNT}
-              onPlayButtonClick={() => history.push(`/game`)}
+              onPlayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         >
         </Route>
         <Route exact
-          path="/login"
+          path={AppRoute.LOGIN}
           render={({history}) => (
             <Login
-              onReplayButtonClick={() => history.push(`/game`)}
+              onReplayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         />
         <PrivateRoute
           exact
-          path="/result"
+          path={AppRoute.RESULT}
           render={({history}) => (
             <Result
-              onReplayButtonClick={() => history.push(`/game`)}
+              onReplayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         />
         <Route exact
-          path="/lose"
+          path={AppRoute.LOSE}
           render={({history}) => (
             <Lose
-              onReplayButtonClick={() => history.push(`/game`)}
+              onReplayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         />
-        <Route path="/game">
+        <Route path={AppRoute.GAME}>
           <GameScreen/>
         </Route>
       </Switch>

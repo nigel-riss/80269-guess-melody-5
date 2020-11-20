@@ -7,6 +7,7 @@ import {
   incrementMistakes,
 } from '../../store/action.js';
 import {
+  AppRoute,
   GameType,
   MAX_MISTAKES_COUNT,
 } from '../../const.js';
@@ -34,13 +35,13 @@ const GameScreen = (props) => {
 
   if (mistakes >= MAX_MISTAKES_COUNT) {
     return (
-      <Redirect to="/lose" />
+      <Redirect to={AppRoute.LOSE} />
     );
   }
 
   if (step >= questions.length || !question) {
     return (
-      <Redirect to="/result" />
+      <Redirect to={AppRoute.RESULT} />
     );
   }
 
@@ -66,7 +67,7 @@ const GameScreen = (props) => {
       );
   }
 
-  return <Redirect to="/" />;
+  return <Redirect to={AppRoute.ROOT} />;
 };
 
 
