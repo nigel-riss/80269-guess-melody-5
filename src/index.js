@@ -10,12 +10,17 @@ import thunk from 'redux-thunk';
 import {createAPI} from './services/api.js';
 import App from './components/app/app.jsx';
 import rootReducer from './store/reducers/root-reducer.js';
+import {requireAuthorization} from './store/action.js';
 import {
   fetchQuestions,
+  checkAuth,
 } from './store/api-actions.js';
+import {AuthorizationStatus} from './const.js';
 
 
-const api = createAPI(() => {});
+const api = createAPI(() => store
+  .dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
+);
 
 const store = createStore(
     rootReducer,
@@ -26,6 +31,7 @@ const store = createStore(
 
 
 store.dispatch(fetchQuestions());
+store.dispatch(checkAuth());
 
 
 ReactDOM.render(
