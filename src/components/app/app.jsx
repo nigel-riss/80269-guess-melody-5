@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
 } from 'react-router-dom';
@@ -10,12 +10,13 @@ import Result from '../result/result.jsx';
 import Lose from '../lose/lose.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
+import browserHistory from '../../browser-history.js';
 import {MAX_MISTAKES_COUNT} from '../../const.js';
 
 
 const App = () => {
   return (
-    <Router>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact
           path="/"
