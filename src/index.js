@@ -32,13 +32,15 @@ const store = createStore(
 );
 
 
-store.dispatch(fetchQuestions());
-store.dispatch(checkAuth());
-
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App/>
-    </Provider>,
-    document.getElementById(`root`)
-);
+Promise.all([
+  store.dispatch(fetchQuestions()),
+  store.dispatch(checkAuth()),
+])
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App/>
+      </Provider>,
+      document.getElementById(`root`)
+  );
+});
