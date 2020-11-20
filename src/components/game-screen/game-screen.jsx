@@ -49,6 +49,7 @@ const GameScreen = (props) => {
     case GameType.ARTIST:
       return (
         <ArtistQuestionWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
@@ -59,6 +60,7 @@ const GameScreen = (props) => {
     case GameType.GENRE:
       return (
         <GenreQuestionWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
