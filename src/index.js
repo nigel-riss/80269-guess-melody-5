@@ -10,27 +10,37 @@ import thunk from 'redux-thunk';
 import {createAPI} from './services/api.js';
 import App from './components/app/app.jsx';
 import rootReducer from './store/reducers/root-reducer.js';
+import {requireAuthorization} from './store/action.js';
 import {
   fetchQuestions,
+  checkAuth,
 } from './store/api-actions.js';
+import {AuthorizationStatus} from './const.js';
+import {redirect} from './store/middlewares/redirect.js';
 
 
-const api = createAPI(() => {});
+const api = createAPI(() => store
+  .dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
+);
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
 
-store.dispatch(fetchQuestions());
-
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App/>
-    </Provider>,
-    document.getElementById(`root`)
-);
+Promise.all([
+  store.dispatch(fetchQuestions()),
+  store.dispatch(checkAuth()),
+])
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App/>
+      </Provider>,
+      document.getElementById(`root`)
+  );
+});
